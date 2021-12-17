@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/besin_listesi">
+
+    <fragment
+        android:id="@+id/besin_listesi"
+        android:name="com.msk.besinleruygulamas.view.besin_listesi"
+        android:label="besin_listesi" >
+        <action
+            android:id="@+id/action_besin_listesi_to_besin_detayi"
+            app:destination="@id/besin_detayi" />
+    </fragment>
+    <fragment
+        android:id="@+id/besin_detayi"
+        android:name="com.msk.besinleruygulamas.view.besin_detayi"
+        android:label="besin_detayi" >
+        <action
+            android:id="@+id/action_besin_detayi_to_besin_listesi"
+            app:destination="@id/besin_listesi" />
+        <argument
+            android:name="besin_id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+</navigation>
