@@ -1,4 +1,18 @@
 package com.msk.besinleruygulamas.model
 
-data class besin(var besin_isim:String?,var besin_kalori:String?,var besin_karbonhidrat:String?,var besin_protein:String?,var besin_yagi:String,var besin_gorseli:String) {
+import com.google.gson.annotations.SerializedName
+
+data class besin(
+    @SerializedName("isim")
+    var besin_isim:String?,
+    @SerializedName("kalori")
+    var besin_kalori:String?,
+    @SerializedName("karbonhidrat")
+    var besin_karbonhidrat:String?,
+    @SerializedName("protein")
+    var besin_protein:String?,
+    @SerializedName("yag")
+    var besin_yagi:String,
+    @SerializedName("gorsel")
+    var besin_gorseli:String) {
 }
