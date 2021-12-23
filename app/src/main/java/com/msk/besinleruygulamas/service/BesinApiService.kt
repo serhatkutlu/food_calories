@@ -8,13 +8,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class BesinApiService {
 
-    private val BASE_URL="https://github.com/atilsamancioglu/"
+
+    private val BASE_URL="https://raw.githubusercontent.com/"
     private val api=Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .build().create(BesinApi::class.java)
+        .build()
+        .create(BesinApi::class.java)
     fun getData():Single<List<besin>>{
+
         return api.getBesin()
+
     }
 }

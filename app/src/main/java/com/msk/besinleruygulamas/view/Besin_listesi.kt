@@ -5,12 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.adapters.ViewBindingAdapter
+
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+
 import com.msk.besinleruygulamas.R
 import com.msk.besinleruygulamas.adapter.recycler_adapter
 import com.msk.besinleruygulamas.model.besin_listesi_viewmodel
@@ -39,22 +39,37 @@ class besin_listesi : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewmodel=ViewModelProviders.of(this).get(besin_listesi_viewmodel::class.java)
 
+        viewmodel.refreshdata()
+        println("5")
         recyclerView.layoutManager=LinearLayoutManager(context)
+        println("6")
         recyclerView.adapter=recycler_Adapter
+        println("7")
+        swipe_refresh_layout.setOnRefreshListener {
+            swipe_refresh_layout.isRefreshing=false
+            progress_bar.visibility=View.VISIBLE
+            viewmodel.refreshdata()
+
+        }
+        ObserveLiveData()
     }
 fun ObserveLiveData(){
-    viewmodel.besinler.observe(this, Observer {
+    viewmodel.besinler.observe(viewLifecycleOwner, Observer {
         it?.let {
+            println("9")
+            println(viewmodel.besinler.value)
             recyclerView.visibility=View.VISIBLE
+            println("9")
             recycler_Adapter.besin_listesi_guncelle(it)
+            println("10")
         }
     })
-    viewmodel.hata_mesaji.observe(viewLifecycleOwner, Observer {
+   viewmodel.hata_mesaji.observe(viewLifecycleOwner, Observer {
         if (!it)
             hata_mesajı.visibility=View.GONE
-        else
-            hata_mesajı.visibility=View.VISIBLE
-
+        else {
+            hata_mesajı.visibility = View.VISIBLE
+        }
     })
     viewmodel.progress_bar.observe(viewLifecycleOwner, Observer {
         if (it) {
@@ -62,7 +77,6 @@ fun ObserveLiveData(){
             hata_mesajı.visibility = View.GONE
             recyclerView.visibility = View.GONE
         }
-
         else{
             progress_bar.visibility = View.GONE
 

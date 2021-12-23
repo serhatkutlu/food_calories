@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface BesinApi {
 
-    @GET("https://github.com/atilsamancioglu/BTK20-JSONVeriSeti/blob/master/besinler.json")
+    @GET("atilsamancioglu/BTK20-JSONVeriSeti/master/besinler.json")
     fun getBesin():Single<List<besin>>
 }
