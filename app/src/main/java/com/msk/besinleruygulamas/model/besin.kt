@@ -23,7 +23,9 @@ data class besin(
     var besin_yagi:String,
     @ColumnInfo(name = "gorsel")
     @SerializedName("gorsel")
-    var besin_gorseli:String) {
+    var besin_gorseli:String)
+{
+
     @PrimaryKey(autoGenerate = true)
-    var id=0
+    var id:Int=0
 }

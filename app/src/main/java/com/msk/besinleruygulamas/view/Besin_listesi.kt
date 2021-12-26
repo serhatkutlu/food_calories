@@ -48,7 +48,7 @@ class besin_listesi : Fragment() {
         swipe_refresh_layout.setOnRefreshListener {
             swipe_refresh_layout.isRefreshing=false
             progress_bar.visibility=View.VISIBLE
-            viewmodel.refreshdata()
+            viewmodel.refresh_data_from_internet()
 
         }
         ObserveLiveData()
